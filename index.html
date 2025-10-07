@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noor Fatima - IT Student Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* -------------------------------------- */
+        /* 1. Global Setup and Fluid Typography */
+        /* -------------------------------------- */
+        :root {
+            --primary-bg: #1A1A2E; 
+            --secondary-bg: #0F0F1A; 
+            --accent-color: #00ADB5; /* Neon Blue Accent */
+            --text-light: #EEEEEE; 
+            --text-dim: #A0A0A9; 
+            --border-radius: 6px;
+            --box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+            --transition-speed: 0.3s;
+            --neon-pink: #FF00FF; /* New Neon Pink Color for glow effects */
+            
+            /* Fluid Typography Base (Scales smoothly) */
+            font-size: clamp(16px, 1.6vw, 18px); 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* --- ADVANCED: Subtle Radial Gradient Background --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text-light);
+            background-color: var(--primary-bg); /* Fallback */
+            background: radial-gradient(circle at top, #1F1F38 1%, var(--primary-bg) 100%); 
+            padding-bottom: 70px;
+            cursor: default; 
+        }
+
+        /* --- Custom Cursor for Interactive Elements (PINK) --- */
+        a, .job-entry, .skills-list li {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="%23FF00FF" stroke="%23EEEEEE" stroke-width="1.5"/></svg>') 10 10, pointer;
+        }
+        
+        a, .job-entry, .skills-list li {
+             cursor: pointer;
+        }
+        
+        /* -------------------------------------- */
+        /* 2. Main Layout Structure (Using Grid) */
+        /* -------------------------------------- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr; /* Default: Single column */
+            gap: 2rem;
+        }
+
+        /* --- Header/Hero Section (MIND-BLOWING EDITION) --- */
+        .hero {
+            background-color: var(--secondary-bg);
+            padding: 6rem 2rem; /* Even more vertical padding */
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+            position: relative; 
+            overflow: hidden; 
+            perspective: 1000px; 
+            background: linear-gradient(135deg, #0F0F1A 0%, #1A1A2E 50%, #0F0F1A 100%); 
+        }
+
+        /* --- Animated Grid Overlay (New Background Effect) --- */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(0, 173, 181, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 173, 181, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px; 
+            opacity: 0.1;
+            z-index: 0;
+            animation: moveGrid 30s linear infinite; 
+        }
+
+        @keyframes moveGrid {
+            from { background-position: 0 0; }
+            to { background-position: 50px 50px; }
+        }
+
+        .hero-content {
+            position: relative; 
+            z-index: 1;
+        }
+
+        /* --- Glitch Effect for H1 (NOOR FATIMA) --- */
+        .hero h1 {
+            font-size: 5rem; 
+            margin-bottom: 0.8rem;
+            color: #fff; 
+            text-shadow: 
+                0 0 10px #fff,                 
+                0 0 25px var(--accent-color),  
+                0 0 50px var(--accent-color),  
+                0 0 80px rgba(0, 173, 181, 0.7); 
+            letter-spacing: 0.2em; 
+            transition: all 0.1s ease-in-out; 
+            position: relative;
+            z-index: 2; 
+            animation: glitch-color 5s infinite alternate steps(2), 
+                       glitch-flicker 0.8s infinite steps(1); 
+        }
+
+        .hero h1::before,
+        .hero h1::after {
+            content: attr(data-text); 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            text-shadow: 
+                0 0 10px #fff,
+                0 0 20px var(--neon-pink), 
+                0 0 40px var(--neon-pink);
+            clip: rect(0, 0, 0, 0); 
+            z-index: -1;
+        }
+
+        .hero h1::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--neon-pink); 
+            animation: glitch-left 3s infinite alternate-reverse steps(5);
+        }
+
+        .hero h1::after {
+            left: -2px;
+            text-shadow: 2px 0 var(--accent-color); 
+            animation: glitch-right 3.5s infinite alternate steps(5);
+        }
+
+        /* --- GLITCH KEYFRAME ANIMATIONS --- */
+        @keyframes glitch-color {
+            0%, 5%   { text-shadow: 0 0 10px #fff, 0 0 25px var(--accent-color), 0 0 50px var(--accent-color), 0 0 80px rgba(0, 173, 181, 0.7); }
+            6%, 7%   { text-shadow: 0 0 10px #fff, 0 0 25px var(--neon-pink), 0 0 50px var(--neon-pink), 0 0 80px rgba(255, 0, 255, 0.7); }
+            8%, 10%  { text-shadow: 0 0 10px #fff, 0 0 25px var(--accent-color), 0 0 50px var(--accent-color), 0 0 80px rgba(0, 173, 181, 0.7); }
+            20%      { text-shadow: 0 0 10px #fff, 0 0 20px var(--accent-color), 0 0 40px var(--neon-pink); }
+            40%      { text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-pink), 0 0 40px var(--accent-color); }
+            60%      { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px var(--accent-color); }
+            80%      { text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-pink), 0 0 40px #fff; }
+            100%     { text-shadow: 0 0 10px #fff, 0 0 25px var(--accent-color), 0 0 50px var(--accent-color), 0 0 80px rgba(0, 173, 181, 0.7); }
+        }
+
+        @keyframes glitch-flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.9; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes glitch-left {
+            0%   { clip: rect(25px, 9999px, 80px, 0); transform: translate(-2px, 0); }
+            10%  { clip: rect(0, 9999px, 20px, 0); transform: translate(2px, -2px); }
+            20%  { clip: rect(100px, 9999px, 150px, 0); transform: translate(-1px, 1px); }
+            30%  { clip: rect(50px, 9999px, 120px, 0); transform: translate(3px, 0); }
+            40%  { clip: rect(70px, 9999px, 90px, 0); transform: translate(-2px, -1px); }
+            50%  { clip: rect(10px, 9999px, 60px, 0); transform: translate(1px, 2px); }
+            60%  { clip: rect(130px, 9999px, 180px, 0); transform: translate(-3px, 0); }
+            70%  { clip: rect(40px, 9999px, 110px, 0); transform: translate(2px, -2px); }
+            80%  { clip: rect(90px, 9999px, 160px, 0); transform: translate(-1px, 1px); }
+            90%  { clip: rect(20px, 9999px, 70px, 0); transform: translate(3px, -1px); }
+            100% { clip: rect(25px, 9999px, 80px, 0); transform: translate(-2px, 0); }
+        }
+
+        @keyframes glitch-right {
+            0%   { clip: rect(10px, 9999px, 60px, 0); transform: translate(2px, 0); }
+            10%  { clip: rect(120px, 9999px, 170px, 0); transform: translate(-2px, 2px); }
+            20%  { clip: rect(30px, 9999px, 80px, 0); transform: translate(1px, -1px); }
+            30%  { clip: rect(80px, 9999px, 130px, 0); transform: translate(-3px, 0); }
+            40%  { clip: rect(0, 9999px, 50px, 0); transform: translate(2px, 1px); }
+            50%  { clip: rect(150px, 9999px, 200px, 0); transform: translate(-1px, -2px); }
+            60%  { clip: rect(70px, 9999px, 120px, 0); transform: translate(3px, 0); }
+            70%  { clip: rect(20px, 9999px, 70px, 0); transform: translate(-2px, 2px); }
+            80%  { clip: rect(110px, 9999px, 160px, 0); transform: translate(1px, -1px); }
+            90%  { clip: rect(60px, 9999px, 110px, 0); transform: translate(-3px, 1px); }
+            100% { clip: rect(10px, 9999px, 60px, 0); transform: translate(2px, 0); }
+        }
+
+
+        /* --- Holographic / Fading Subtext --- */
+        .hero h2 {
+            font-size: 2rem; 
+            color: var(--text-light); 
+            margin-bottom: 2rem; 
+            letter-spacing: 0.15em;
+            text-transform: uppercase; 
+            opacity: 0.8; 
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); 
+            animation: fadeIn 2s ease-out forwards; 
+            animation-delay: 0.5s; 
+            transform: translateY(10px); 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 0.8; transform: translateY(0); }
+        }
+
+        .hero p {
+            max-width: 900px; 
+            margin: 0 auto; 
+            font-size: 1.2rem; 
+            color: var(--text-dim); 
+            line-height: 1.8;
+            opacity: 0.6; 
+            animation: fadeIn 2s ease-out forwards; 
+            animation-delay: 1s; 
+            transform: translateY(15px);
+        }
+
+        /* --- Animated bottom line (changed to subtle animated elements) --- */
+        .hero .hero-content::after { 
+            content: '';
+            position: absolute;
+            bottom: -50px; 
+            left: 50%;
+            width: 150%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--neon-pink), var(--accent-color), transparent);
+            box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--accent-color);
+            transform: translateX(-50%) rotateY(45deg); 
+            animation: scanLine 8s linear infinite alternate, glowFade 4s ease-in-out infinite alternate;
+            z-index: 1; 
+            filter: blur(0.5px); 
+        }
+        
+        @keyframes scanLine {
+            0% { transform: translateX(-50%) rotateY(45deg) scaleX(0.5); bottom: -50px; opacity: 0; }
+            20% { opacity: 1; }
+            50% { transform: translateX(-50%) rotateY(0deg) scaleX(1); bottom: 10px; }
+            80% { opacity: 1; }
+            100% { transform: translateX(-50%) rotateY(-45deg) scaleX(0.5); bottom: -50px; opacity: 0; }
+        }
+
+        @keyframes glowFade {
+            0% { box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--accent-color); }
+            50% { box-shadow: 0 0 15px var(--neon-pink), 0 0 30px var(--accent-color); }
+            100% { box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--accent-color); }
+        }
+
+        /* -------------------------------------- */
+        /* 3. Section Styling */
+        /* -------------------------------------- */
+        
+        .section {
+            background-color: var(--secondary-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border-left: 5px solid var(--accent-color); 
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            color: var(--accent-color); 
+            border-bottom: 2px solid var(--text-dim); 
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            
+            /* Sharp Blue Text with CRISP NEON PINK Glow */
+            text-shadow: 
+                0 0 1px #fff,                 
+                0 0 2px var(--neon-pink),              
+                0 0 5px var(--neon-pink);              
+            
+            animation: none;
+        }
+
+        /* --- CONTACT BOX Specific Styling (Uses Neon Accent Color) --- */
+        #contact {
+            background-color: var(--accent-color);
+            border-left: none; 
+            box-shadow: 0 0 20px rgba(0, 173, 181, 0.7); 
+            color: var(--secondary-bg); 
+        }
+        
+        #contact h3 {
+            color: var(--secondary-bg); 
+            border-bottom: 2px solid var(--secondary-bg); 
+            animation: none; 
+            text-shadow: none; 
+        }
+
+        #contact a {
+            color: var(--secondary-bg); 
+            font-weight: 700;
+            text-decoration: none; 
+            transition: all var(--transition-speed); 
+        }
+
+        #contact a:hover {
+            color: var(--primary-bg); 
+            text-decoration: underline; 
+            text-shadow: none; 
+        }
+
+        /* --- Contact List (ADVANCED: Forced Vertical Stacking for Clarity) --- */
+        #contact ul {
+            display: flex;
+            flex-direction: column; 
+            gap: 0.8rem; 
+            list-style: none;
+            padding: 0;
+        }
+
+        /* --- Experience & Education --- */
+        .job-entry, .education-entry {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: var(--primary-bg);
+            border-radius: var(--border-radius);
+            transition: transform var(--transition-speed);
+        }
+        
+        /* --- ADVANCED: Added :focus-within for Accessibility --- */
+        .job-entry:hover,
+        .job-entry:focus-within {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
+            outline: none;
+        }
+
+        .job-entry h4, .education-entry h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .company-info {
+            font-size: 0.9em;
+            margin-bottom: 1rem;
+        }
+
+        .job-entry ul {
+            list-style: "→ ";
+            margin-left: 1.5rem;
+        }
+        
+        /* --- Skills List (Flexbox wrapping - Uses Neon Accent Color) --- */
+        .skills-list {
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 0.8rem;
+            justify-content: center;
+            list-style: none; 
+            padding: 0;
+        }
+        
+        .skills-list li {
+            background-color: var(--accent-color);
+            color: var(--secondary-bg);
+            padding: 0.7rem 1rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 0 8px var(--accent-color);
+            text-align: center;
+            transition: all var(--transition-speed); 
+        }
+        
+        /* --- SKILLS LIST HOVER/FOCUS EFFECT --- */
+        .skills-list li:hover,
+        .skills-list li:focus {
+            transform: scale(1.05);
+            background-color: var(--secondary-bg); 
+            color: var(--accent-color); 
+            box-shadow: 0 0 15px var(--accent-color); 
+            outline: none;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: var(--secondary-bg);
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            width: 100%;
+            position: fixed; 
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        /* ======================================= */
+        /* 4. EXTREME REACTIVITY (Media Queries) */
+        /* ======================================= */
+
+        /* DESKTOP/LARGE SCREENS (From 1024px and up) */
+        @media (min-width: 1024px) {
+            .container {
+                /* ADVANCED: Adjusted to 1.2fr 3fr for a slightly wider sidebar */
+                grid-template-columns: 1.2fr 3fr; 
+            }
+            
+            /* TOOLKIT is at the top of the sidebar */
+            #skills {
+                grid-column: 1 / 2;
+                grid-row: 1 / 2; 
+            }
+
+            /* Contact is below Toolkit */
+            #contact {
+                grid-column: 1 / 2;
+                grid-row: 2 / 4; 
+            }
+            
+            /* Main content (Experience/Education) stays in column 2 */
+            #experience {
+                grid-column: 2 / 3;
+            }
+            #education {
+                grid-column: 2 / 3;
+            }
+        }
+        
+        /* TABLET/MEDIUM SCREENS (Max 768px) */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            .hero h1 {
+                font-size: 3.5rem; /* Smaller font size for mobile */
+                letter-spacing: 0.1em;
+            }
+            .hero h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            .hero p {
+                font-size: 0.95rem;
+                max-width: 95%;
+            }
+            .hero::before {
+                background-size: 30px 30px; /* Smaller grid cells */
+            }
+            .hero .hero-content::after {
+                width: 100%; /* Adjust scan line for smaller width */
+            }
+        }
+
+        /* SMALL MOBILE SCREENS (Max 480px) */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem; /* Even smaller for very small screens */
+                letter-spacing: 0.05em;
+            }
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+            .hero p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 data-text="NOOR FATIMA">NOOR FATIMA</h1>
+            <h2>ADP-IT Student & Technical Skills Instructor</h2>
+            <p>IT student (4th Semester) focused on responsive **Frontend Development** and committed to leveraging strong **Technical Instruction** skills for clear communication and effective teamwork.</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section id="skills" class="section">
+            <h3>TOOLKIT</h3>
+            <ul class="skills-list">
+                <li>**HTML5 & CSS3**</li>
+                <li>**Responsive Design**</li>
+                <li>JavaScript Basics</li>
+                <li>Teaching/Tutoring</li>
+                <li>Data Entry & Accuracy</li>
+                <li>**MS Office Suite**</li>
+                <li>OOP Concepts</li>
+                <li>Team Collaboration</li>
+            </ul>
+        </section>
+        
+        <section id="contact" class="section">
+            <h3>CONNECT</h3>
+            <ul>
+                <li>Email: <a href="mailto:noorfatimah580@gmail.com">noorfatimah580@gmail.com</a></li>
+                <li>WhatsApp: <a href="tel:+923138605870">+923138605870</a></li>
+                <li>LinkedIn: <a href="https://www.linkedin.com/in/noor-fatima-cyber" target="_blank">https://www.linkedin.com/in/noor-fatima-cyber</a></li>
+                <li>GitHub: <a href="https://github.com/noorfatimaofficial" target="_blank">/noorfatimaofficial</a></li>
+            </ul>
+        </section>
+
+        <section id="experience" class="section">
+            <h3>PROJECTS & EXPERIENCE</h3>
+
+            <div class="job-entry" tabindex="0">
+                <h4>Frontend Coursework & Projects</h4>
+                <p class="company-info">Associate Degree Program in IT | 2024 - Present</p>
+                <ul>
+                    <li>Developed multiple responsive webpage projects (e.g., landing pages, digital portfolios) using **HTML5, CSS3, and core JavaScript**.</li>
+                    <li>Applied principles of **Object-Oriented Programming (OOP)** and **Database Management** as taught in 4th-semester coursework.</li>
+                    <li>Consistently utilized **CSS Grid and Flexbox** techniques to create fully adaptive and mobile-first layouts.</li>
+                </ul>
+            </div>
+
+            <div class="job-entry" tabindex="0">
+                <h4>Technical Instruction & Data Entry</h4>
+                <p class="company-info">Community/Freelance Roles | 2024 - Present</p>
+                <ul>
+                    <li>Provided effective **technical instruction** and support to peers and community members, simplifying complex software usage (e.g., MS Office) and basic computer concepts.</li>
+                    <li>Maintained excellent data quality through high-accuracy **data entry and verification** tasks, demonstrating strong attention to detail.</li>
+                    <li>Developed strong general computer skills including file management, basic troubleshooting, and efficient use of productivity suites.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="education" class="section">
+            <h3>EDUCATION</h3>
+            <div class="education-entry" tabindex="0">
+                <h4>Associate Degree Program (ADP) in Information Technology</h4>
+                <p class="company-info">Local University/College | **2024 - 2026 (Expected)**</p>
+                <p>Currently in 4th Semester. Core coursework includes: Web Development Fundamentals, Object-Oriented Programming, and Database Systems.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Noor Fatima. Built for ultimate responsiveness. ADP-IT Student.</p>
+    </footer>
+
+</body>
+</html>
